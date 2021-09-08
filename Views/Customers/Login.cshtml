@@ -1,0 +1,32 @@
+﻿@model ATMWebApplication.Models.Customer
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-header">
+            Login
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Login", "Customers"))
+            {
+            <div class="form-group">
+                @*<label asp-for="AccountNum">Account Number</label>
+                <input size="10" asp-for="AccountNum" />*@
+                @Html.LabelFor(c => c.AccountNum)
+                @Html.TextBoxFor(c => c.AccountNum, new { @class = "form-control", @placeholder = "Account Number" })
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Pin">Pin</label>
+                <input size="10" asp-for="Pin" />*@
+                @Html.LabelFor(c => c.Pin)
+                @Html.TextBoxFor(c => c.Pin, new { @class = "form-control", @placeholder = "Pin" })
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Login" />
+            </div>
+            }
+        </div>
+    </div>
+</div>
