@@ -24,22 +24,6 @@ namespace ATMWebApplication.Controllers
             return View();
         }
 
-       
-
-        public async Task<IActionResult> CheckBalance()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> Deposit()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> Withdrawal()
-        {
-            return View();
-        }
 
     }
 }

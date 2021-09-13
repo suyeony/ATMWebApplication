@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using ATMWebApplication.Data;
 using ATMWebApplication.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace ATMWebApplication.Controllers
 {
@@ -47,15 +48,11 @@ namespace ATMWebApplication.Controllers
                 Console.WriteLine(data);
                 if (data.Count() > 0)
                 {
-                    //add session
-                    //Session["FullName"] = data.FirstOrDefault().FullName;
-                    //Session["AccountNum"] = data.FirstOrDefault().AccountNum;
-                    //Session["Pin"] = data.FirstOrDefault().Pin;
-                    Console.WriteLine("Login Succeed.");
-                    ViewBag.FullName = data.FirstOrDefault().FullName;
-                    ViewBag.AccountNum = data.FirstOrDefault().AccountNum;
-                    ViewBag.Balance = data.FirstOrDefault().Balance;
-                    
+                    //add session              
+                    HttpContext.Session.SetString("Full Name", data.FirstOrDefault().FullName);
+                    HttpContext.Session.SetString("Account Number", data.FirstOrDefault().AccountNum);
+                    HttpContext.Session.SetInt32("Balance", data.FirstOrDefault().Balance);
+                    Console.WriteLine("Login Succeed.");             
                     return RedirectToAction("Welcome");
                 }
                 else
@@ -70,6 +67,26 @@ namespace ATMWebApplication.Controllers
         }
 
         public ActionResult Welcome()
+        {
+            return View();
+        }
+
+        public ActionResult CheckBalance()
+        {
+            return View();
+        }
+
+        public ActionResult Deposit(Customer c, String Balance)
+        {
+            // adding deposit to balance of customer
+            //Int32 bal = HttpContext.Session.GetInt32("Balance");
+            //bal += int.Parse(Balance);
+
+            
+            return View();
+        }
+
+        public ActionResult Withdrawal()
         {
             return View();
         }

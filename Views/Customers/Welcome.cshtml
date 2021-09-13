@@ -1,12 +1,17 @@
+@using Microsoft.AspNetCore.Http;
 @{ ViewBag.Title = "Welcome"; }
 
-<h2>Welcome @ViewBag.FullName</h2>
+<h2>Welcome @Context.Session.GetString("Full Name")</h2>
 
+@*create menu button with logo*@
 <p>
-    Name: @ViewBag.FullName
+    Name: @Context.Session.GetString("Full Name")
     <br />
-    Account Number: @ViewBag.AccountNum
+    Account Number: @Context.Session.GetString("Account Number")
+
     <br />
-    Balance: @ViewBag.Balance
+    Balance: @Context.Session.GetInt32("Balance")
+
+
 
 </p>

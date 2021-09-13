@@ -27,7 +27,14 @@ namespace ATMWebApplication.Models
                         AccountNum = "12345678",
                         Pin = "1234",
                         Balance = 250
-                    }
+                    },
+                    new Customer
+                    {
+                        FullName = "Ella Lee",
+                        AccountNum = "910111213",
+                        Pin = "5678",
+                        Balance = 1000
+                    }              
                 );
 
                 context.SaveChanges();
