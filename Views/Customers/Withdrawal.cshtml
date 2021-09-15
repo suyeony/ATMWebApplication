@@ -1,5 +1,11 @@
-﻿@{
+﻿@model ATMWebApplication.Models.Customer
+@{
     ViewBag.Title = "Withdrawal";
 }
 
 <h1>Withdrawal</h1>
+<form class="form-group" method="POST">
+    <label asp-for="Balance" class="control-label"></label>
+    <input asp-for="Balance" class="form-control" />
+    <input type="submit" value="Deposit" class="btn btn-primary" />
+</form>

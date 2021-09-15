@@ -9,7 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
-    <None Remove="Views\Login\" />
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Models\Data\" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
@@ -34,6 +33,5 @@
   <ItemGroup>
     <Folder Include="Views\ATMWebApplication\" />
     <Folder Include="Models\Data\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
 </Project>

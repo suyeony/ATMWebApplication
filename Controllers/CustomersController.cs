@@ -66,6 +66,15 @@ namespace ATMWebApplication.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            HttpContext.Session.SetString("Full Name", "");
+            HttpContext.Session.SetString("Account Number", "");
+            HttpContext.Session.SetInt32("Balance", 0);
+            return RedirectToAction("Login");
+        }
+
         public ActionResult Welcome()
         {
             return View();
@@ -73,21 +82,51 @@ namespace ATMWebApplication.Controllers
 
         public ActionResult CheckBalance()
         {
+            if (HttpContext.Session.GetString("Full Name") == "")
+            {
+                //HttpContext.Session.SetString("message", "You are not logged in yet.");
+            }
             return View();
         }
 
-        public ActionResult Deposit(Customer c, String Balance)
+        [HttpGet]
+        public ActionResult Deposit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Deposit(String Balance)
         {
             // adding deposit to balance of customer
-            //Int32 bal = HttpContext.Session.GetInt32("Balance");
-            //bal += int.Parse(Balance);
+            Int32 bal = HttpContext.Session.GetInt32("Balance").Value;
+            bal += int.Parse(Balance);
+            HttpContext.Session.SetInt32("Balance", bal);
+            var AccountNum = HttpContext.Session.GetString("Account Number");
+            var user = _context.Customer.FirstOrDefault(c => c.AccountNum.Equals(AccountNum));
+            user.Balance = bal;
+            Console.WriteLine("Customer's balance: " + user.Balance);
 
-            
+            return RedirectToAction("CheckBalance");
+        }
+
+        [HttpGet]
+        public ActionResult Withdrawal()
+        {
             return View();
         }
 
-        public ActionResult Withdrawal()
+        [HttpPost]
+        public ActionResult Withdrawal(String Balance)
         {
+            Int32 bal = HttpContext.Session.GetInt32("Balance").Value;
+            bal -= int.Parse(Balance);
+            HttpContext.Session.SetInt32("Balance", bal);
+            var AccountNum = HttpContext.Session.GetString("Account Number");
+            var user = _context.Customer.FirstOrDefault(c => c.AccountNum.Equals(AccountNum));
+            user.Balance = bal;
+            Console.WriteLine("Customer's balance: " + user.Balance);
+
             return View();
         }
 

@@ -171,3 +171,4 @@
 /Users/yangsuyeon/Projects/ATMWebApplication/ATMWebApplication/obj/Debug/net5.0/ref/ATMWebApplication.dll
 /Users/yangsuyeon/Projects/ATMWebApplication/ATMWebApplication/obj/Debug/net5.0/ATMWebApplication.pdb
 /Users/yangsuyeon/Projects/ATMWebApplication/ATMWebApplication/obj/Debug/net5.0/ATMWebApplication.genruntimeconfig.cache
+/Users/yangsuyeon/Projects/ATMWebApplication/ATMWebApplication/obj/Debug/net5.0/ATMWebApplication.csproj.AssemblyReference.cache
