@@ -59,7 +59,7 @@ namespace ATMWebApplication.Controllers
                 {
                     //Login fail message has to be fixed!
                     ViewBag.Message = "Login failed";
-                    Console.WriteLine("Login Failed.");
+                    Console.WriteLine("Login Failed."); 
                     return RedirectToAction("Login");
                 }
             }
@@ -69,9 +69,7 @@ namespace ATMWebApplication.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
-            HttpContext.Session.SetString("Full Name", "");
-            HttpContext.Session.SetString("Account Number", "");
-            HttpContext.Session.SetInt32("Balance", 0);
+            HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }
 
@@ -106,6 +104,9 @@ namespace ATMWebApplication.Controllers
             var user = _context.Customer.FirstOrDefault(c => c.AccountNum.Equals(AccountNum));
             user.Balance = bal;
             Console.WriteLine("Customer's balance: " + user.Balance);
+            //DB update
+            _context.Update(user);
+            _context.SaveChanges();
 
             return RedirectToAction("CheckBalance");
         }
