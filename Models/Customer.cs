@@ -9,6 +9,7 @@ namespace ATMWebApplication.Models
     {
 
         public int ID { get; set; }
+        [Required]
         public string FullName { get; set; }
         [Required]
         public string AccountNum { get; set; }
@@ -16,6 +17,7 @@ namespace ATMWebApplication.Models
         [Required]
         [Compare("Pin", ErrorMessage = "Passwords must match")]
         public string Pin { get; set; }
+        [Required]
         public int Balance { get; set; }
     }
 }

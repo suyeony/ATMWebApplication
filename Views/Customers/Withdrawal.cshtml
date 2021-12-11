@@ -1,11 +1,23 @@
-﻿@model ATMWebApplication.Models.Customer
+﻿@using Microsoft.AspNetCore.Http
+@model ATMWebApplication.Models.Customer
 @{
     ViewBag.Title = "Withdrawal";
 }
 
 <h1>Withdrawal</h1>
-<form class="form-group" method="POST">
-    <label asp-for="Balance" class="control-label"></label>
-    <input asp-for="Balance" class="form-control" />
-    <input type="submit" value="Deposit" class="btn btn-primary" />
-</form>
+@if (@Context.Session.GetString("Account Number") != null)
+{
+    <form class="form-group" method="POST">
+        <h4>Enter Deposit Amount</h4>
+        <label asp-for="Balance" class="control-label"></label>
+        <input asp-for="Balance" class="form-control" />
+        <input type="submit" value="Withdrawal" class="btn btn-primary" />
+    </form>
+}
+else
+{
+    <h4>Please login first.</h4>
+    <input type="button" value="Login" onclick="location.href='@Url.Action("Login", "Customers")'" />
+}
+
+

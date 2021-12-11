@@ -60,8 +60,9 @@ namespace ATMWebApplication.Controllers
                 {
                     //Login fail message has to be fixed!
                     ViewBag.Message = "Login failed";
-                    Console.WriteLine("Login Failed."); 
-                    return RedirectToAction("Login");
+                    Console.WriteLine("Login Failed.");
+                    //return RedirectToAction("Login");
+                    return View();
                 }
             }
             return View();
@@ -128,8 +129,12 @@ namespace ATMWebApplication.Controllers
             var user = _context.Customer.FirstOrDefault(c => c.AccountNum.Equals(AccountNum));
             user.Balance = bal;
             Console.WriteLine("Customer's balance: " + user.Balance);
+            //DB update
+            _context.Update(user);
+            _context.SaveChanges();
 
-            return View();
+
+            return RedirectToAction("CheckBalance");
         }
 
         // GET: Customers
@@ -168,7 +173,7 @@ namespace ATMWebApplication.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,fullName,accountNum,pin,balance")] Customer customer)
+        public async Task<IActionResult> Create([Bind("ID,FullName,AccountNum,Pin,Balance")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -200,7 +205,7 @@ namespace ATMWebApplication.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,fullName,accountNum,pin,balance")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,FullName,AccountNum,Pin,Balance")] Customer customer)
         {
             if (id != customer.ID)
             {

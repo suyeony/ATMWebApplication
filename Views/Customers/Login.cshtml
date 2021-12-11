@@ -11,22 +11,26 @@
         <div class="card-body">
             @using (Html.BeginForm("Login", "Customers"))
             {
-            <div class="form-group">
-                @*<label asp-for="AccountNum">Account Number</label>
-                <input size="10" asp-for="AccountNum" />*@
-                @Html.LabelFor(c => c.AccountNum)
-                @Html.TextBoxFor(c => c.AccountNum, new { @class = "form-control", @placeholder = "Account Number" })
-            </div>
-            <div class="form-group">
-                @*<label asp-for="Pin">Pin</label>
-                <input size="10" asp-for="Pin" />*@
-                @Html.LabelFor(c => c.Pin)
-                @Html.TextBoxFor(c => c.Pin, new { @class = "form-control", @placeholder = "Pin" })
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login" />
-            </div>
+                <div class="form-group">
+                    <label asp-for="AccountNum">Account Number</label><br />
+                <input size="20" asp-for="AccountNum" placeholder="Account Number" />
+                    @*@Html.LabelFor(c => c.AccountNum, new { @value = "Account Number"})
+                    @Html.TextBoxFor(c => c.AccountNum, new { @class = "form-control", @placeholder = "Account Number" })
+                        *@
+                </div>
+                <div class="form-group">
+                    <label asp-for="Pin">Password</label><br />
+                <input size="20" asp-for="Pin" placeholder="Pin" type="password" value="" />
+                    @*@Html.LabelFor(c => c.Pin)
+                    @Html.TextBoxFor(c => c.Pin, new { @class = "form-control", @placeholder = "Pin", @type = "password", @value = "" })
+                    *@
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Login" />
+                </div>
+                <div class="form-group">
+                    <input type="button" value="Register" onclick="location.href='@Url.Action("Create", "Customers")'" />
+                </div>
             }
         </div>
-    </div>
 </div>

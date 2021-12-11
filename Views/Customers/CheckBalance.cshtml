@@ -5,13 +5,23 @@
 }
 
 <h1>Check Balance</h1>
-<div>
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Balance)
-        </dt>
-        <dd class="col-sm-10">
-            @Context.Session.GetInt32("Balance")
-        </dd>
-    </dl>
-</div>
+@if (@Context.Session.GetString("Account Number") != null)
+{
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Balance)
+            </dt>
+            <dd class="col-sm-10">
+                @Context.Session.GetInt32("Balance")
+            </dd>
+        </dl>
+    </div>
+}
+else
+{
+    <h4>Please login first.</h4>
+    <input type="button" value="Login" onclick="location.href='@Url.Action("Login", "Customers")'" />
+}
+
+
